@@ -230,7 +230,7 @@ module BancBox
     # @param options [Hash] A customizable set of options.
     def link_payee(options)
       data = {
-        :clientId => client_id.to_hash,
+        :clientId => options[:client_id].to_hash,
         :referenceId => options[:reference_id],
         :payee => options[:payee]
       }
