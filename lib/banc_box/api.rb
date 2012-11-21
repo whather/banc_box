@@ -232,11 +232,12 @@ module BancBox
       data = {
         :clientId => options[:client_id].to_hash,
         :referenceId => options[:reference_id],
-        :payee => options[:payee]
+        :payee => {}
       }
 
       # For some dumb reason, payeeAccountNumber is required. So just use the referenceId
       data[:payee][:payeeAccountNumber] = options[:reference_id]
+      data[:payee][:payee] = options[:payee]
 
       get_response(:post, 'linkPayee', data)
     end
