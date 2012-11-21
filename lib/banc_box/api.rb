@@ -229,11 +229,9 @@ module BancBox
     # @return [Hash] The data returned from the request.
     # @param options [Hash] A customizable set of options.
     def link_payee(options)
-      data = {
-        :clientId => options[:client_id].to_hash,
-        :referenceId => options[:reference_id],
-        :payee => options[:payee].to_hash
-      }
+      data = options[:payee].to_hash
+      data[:clientId] = options[:client_id].to_hash
+      data[:referenceId] = options[:reference_id]
 
       get_response(:post, 'linkPayee', data)
     end
