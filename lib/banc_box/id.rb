@@ -1,6 +1,9 @@
 module BancBox
   class Id
 
+    attr_reader :banc_box_id
+    attr_reader :reference_id
+
     # Create a new banc_box id.
     #
     # @param options [Hash] Either a bancbox id or a reference id.
