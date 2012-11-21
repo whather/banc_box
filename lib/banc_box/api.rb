@@ -116,6 +116,22 @@ module BancBox
       get_response(:post, 'updateClientStatus', data)
     end
 
+    # Verify a client
+    #
+    # @see http://www.bancbox.com/api/view/12
+    # @return [Hash] The returned data.
+    # @param client_id [BancBox::Id] A client_id object.
+    # @param options [Hash] A customizable set of options.
+    # @option options [Boolean] :generate_questions
+    def verify_client(client_id, options)
+      data = {
+        :clientId => client_id.to_hash,
+        :generateQuestions => options[:generate_questions]
+      }
+
+      get_response(:post, 'verifyClient', data)
+    end
+
     # Search for clients.
     #
     # @see http://www.bancbox.com/api/view/8
