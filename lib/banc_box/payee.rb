@@ -41,6 +41,7 @@ module BancBox
       elsif @check
         hash[:payee][:check] = @check.to_hash
       end
+      hash
     end
   end
 end
