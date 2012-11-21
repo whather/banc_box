@@ -223,6 +223,24 @@ module BancBox
       get_response(:post, 'collectFunds', data)
     end
 
+    # Link payee
+    #
+    # @see http://www.bancbox.com/api/view/29
+    # @return [Hash] The data returned from the request.
+    # @param options [Hash] A customizable set of options.
+    def link_payee(options)
+      data = {
+        :clientId => client_id.to_hash,
+        :referenceId => options[:reference_id],
+        :payee => options[:payee]
+      }
+
+      # For some dumb reason, payeeAccountNumber is required. So just use the referenceId
+      data[:payee][:payeeAccountNumber] = options[:reference_id]
+
+      get_response(:post, 'linkPayee', data)
+    end
+
     # Open an account
     #
     # @see http://www.bancbox.com/api/view/29
