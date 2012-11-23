@@ -278,7 +278,27 @@ module BancBox
       get_response(:post, 'transferFunds', data)
     end
 
-
+    # Send funds
+    #
+    # @see http://www.bancbox.com/api/view/54
+    # @return [Hash] The data returned from the request.
+    # @option options [method] Specify a method as an empty parameter, {'check', 'wire' ,'book', 'ach', 'paypal', 'billpay', 'creditcard'}
+    # @option options [BancBox::Id] :source_account_id The account to read.
+    # @option options [Hash] :destination The account to fund.
+    # @option options [String] :payee_account_number If the destination is to a linked payee, then specify the payee account number (Max Length:45).
+    # @option options [String] :memo
+    # @option options [Array<BancBox::DebitItem>] :debit_items The debits.
+    def send_funds(options)
+      data = {
+        :method => options[:method],
+        :sourceAccount => options[:source_account_id].to_hash,
+        :destination => options[:destination],
+        :payeeAccountNumber => options[:payee_account_number],
+        :memo => options[:memo],
+        :items => options[:debit_items].map { |i| i.to_hash }
+      }
+      get_response(:post, 'sendFunds', data)
+    end
 
 
     def formatted_time(time)
