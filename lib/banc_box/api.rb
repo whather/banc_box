@@ -292,7 +292,7 @@ module BancBox
       data = {
         :method => options[:method],
         :sourceAccount => options[:source_account_id].to_hash,
-        :destination => options[:destination],
+        :destination => options[:destination_account],
         :payeeAccountNumber => options[:payee_account_number],
         :memo => options[:memo],
         :items => options[:debit_items].map { |i| i.to_hash }
