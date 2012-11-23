@@ -300,6 +300,17 @@ module BancBox
       get_response(:post, 'sendFunds', data)
     end
 
+    # Get schedules
+    #
+    # @see http://www.bancbox.com/api/view/49
+    # @return [Hash] The data returned from the request.
+    def get_schedules(options)
+      data = {
+        :scheduleId => options[:schedule_id].to_hash,
+      }
+      get_response(:post, 'getSchedules', data)
+    end
+
 
     def formatted_time(time)
       time && time.strftime('%Y-%m-%dT%H:%M:%S')
