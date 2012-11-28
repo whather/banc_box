@@ -207,10 +207,8 @@ module BancBox
         :source => {}
       }
 
-      if (id = options[:source][:linked_external_account_id])
-        data[:source][:linkedExternalAccount] = id.to_hash
-      elsif (id = options[:source][:banc_box_account_id])
-        data[:source][:account] = id.to_hash
+      if options[:source][:linked_external_account_id].present?
+        data[:source][:linkedExternalAccount] = options[:source][:linked_external_account_id].to_hash
       elsif BancBox::BankAccount === options[:source][:external_account]
         data[:source][:newExternalAccount] = {
           :bankAccount => options[:source][:external_account].to_hash
