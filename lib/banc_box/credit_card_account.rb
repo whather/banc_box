@@ -1,7 +1,6 @@
 module BancBox
   class CreditCardAccount
 
-    attr_reader :track_data
     attr_reader :number
     attr_reader :expiry_month
     attr_reader :expiry_year
@@ -14,7 +13,6 @@ module BancBox
     #
     # @return [BancBox::CreditCardAccount] The account object
     # @param data [Hash] A customizable set of options.
-    # @option data [String] :track_data
     # @option data [String] :number The credit card number
     # @option data [String] :expiry_month As MM
     # @option data [String] :expiry_year As YY
@@ -24,7 +22,7 @@ module BancBox
     # @option data [BancBox::Address] :address
     def initialize(data)
       attrs = [
-        :track_data, :number, :expiry_month, :expiry_year,
+        :number, :expiry_month, :expiry_year,
         :type, :name, :cvv, :address
       ]
       attrs.each do |attr|
@@ -37,7 +35,6 @@ module BancBox
     # @return [Hash] The data hash
     def to_hash
       {
-        :trackdata => @track_data,
         :number => @number,
         :expiryDate => "#{@expiry_month}/#{@expiry_year}",
         :type => @type,
