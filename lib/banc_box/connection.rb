@@ -18,7 +18,6 @@ module BancBox
     def request(method, path, data)
       data ||= {}
       data.merge!(authentication_data)
-      puts data
       response = faraday_connection.send(method) do |request|
         case method
         when :delete, :get
