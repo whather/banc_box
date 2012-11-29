@@ -215,7 +215,9 @@ module BancBox
         }
       elsif BancBox::CreditCardAccount === options[:source][:external_account]
         data[:source][:newExternalAccount] = {
-          :creditCardAccount => options[:source][:external_account].to_hash
+          :creditCardAccount => {
+            :creditCardDetails => options[:source][:external_account].to_hash
+          }
         }
       end
       get_response(:post, 'collectFunds', data)
